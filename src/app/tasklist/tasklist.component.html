@@ -1,0 +1,116 @@
+<div class="container-fluid" style="padding-top: 25px;">
+  <div class="row">
+    <div class="col-lg-2 col-md-3 col-sm-2"></div>
+    <div class="col-lg-8 col-md-6 col-sm-8">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <div class="text-center">
+              <h3>Tasklist SUPERO</h3>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="tab-icon">assignment</mat-icon> TODO ({{todoList.length}})
+              </ng-template>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="md-form">
+                    <input type="text" [(ngModel)]="newTask.title" maxlength="100" id="taskDescription" placeholder="Digite aqui o que você precisa fazer!"
+                      class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="md-form form-group">
+                    <mat-button-toggle-group [(ngModel)]="newTask.priority" #group="matButtonToggleGroup">
+                      <mat-button-toggle value="0">
+                        <mat-icon class="low">outlined_flag</mat-icon>
+                      </mat-button-toggle>
+                      <mat-button-toggle value="1">
+                        <mat-icon class="medium">outlined_flag</mat-icon>
+                      </mat-button-toggle>
+                      <mat-button-toggle value="2">
+                        <mat-icon class="high">outlined_flag</mat-icon>
+                      </mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="md-form form-group">
+                    <button mat-raised-button color="primary" (click)="addTask()">Adicionar</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="ngx-dnd-container" ngxDroppable [model]="todoList">
+                    <div class="ngx-dnd-item" ngxDraggable *ngFor="let item of todoList" [model]="item">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <mat-checkbox [(ngModel)]="item.completed">
+                            {{item.title}}
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-md-2">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
+                        <div class="col-md-2">
+                          <button mat-icon-button>
+                            <mat-icon class="margin-right" [ngClass]="getFlagType(item)">outlined_flag</mat-icon>
+                          </button>
+                          <button mat-icon-button (click)="editTaskDialog(item)">
+                            <mat-icon class="margin-right">create</mat-icon>
+                          </button>
+                          <button mat-icon-button>
+                            <mat-icon>delete_outlined</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="tab-icon">done_all</mat-icon> Concluídas ({{completedList.length}})
+              </ng-template>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="ngx-dnd-container" ngxDroppable [model]="completedList">
+                    <div class="ngx-dnd-item" ngxDraggable *ngFor="let item of completedList" [model]="item">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <mat-checkbox [(ngModel)]="item.completed" class="line-through">
+                            {{item.title}}
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-md-2">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
+                        <div class="col-md-2">
+                          <button mat-icon-button>
+                            <mat-icon class="margin-right" [ngClass]="getFlagType(item)">outlined_flag</mat-icon>
+                          </button>
+                          <button mat-icon-button (click)="editTaskDialog(item)">
+                            <mat-icon class="margin-right">create</mat-icon>
+                          </button>
+                          <button mat-icon-button>
+                            <mat-icon>delete_outlined</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+          <p>Tarefas concluídas: {{completedList.length}} de {{todoList.length + completedList.length}} ({{getPercentOfConclusion()}}%)</p>
+          <mat-progress-bar class="example-margin" [color]="primary" [mode]="'determinate'" [value]="getPercentOfConclusion()">
+          </mat-progress-bar>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-2"></div>
+  </div>
+</div>

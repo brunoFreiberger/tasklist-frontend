@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="md-form">
+        <input type="text" [(ngModel)]="newTask.title" maxlength="100" id="taskDescription" placeholder="Digite aqui o que você precisa fazer!"
+          class="form-control">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="md-form form-group">
+        <mat-button-toggle-group [(ngModel)]="newTask.priority" #group="matButtonToggleGroup">
+          <mat-button-toggle value="0">
+            <mat-icon class="low">outlined_flag</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="1">
+            <mat-icon class="medium">outlined_flag</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="2">
+            <mat-icon class="high">outlined_flag</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data.title" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,42 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@swimlane/ngx-dnd/release/index.css";
+body, html {
+    height: 100%;
+}
+.bg {
+    /* The image used */
+    background-image: url("https://mdbootstrap.com/img/Photos/Others/images/77.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ngx-dnd-container {
+    border: 0px !important;
+    background:white !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.ngx-dnd-content {
+    background: white !important;
+}
+
+.ngx-dnd-container .gu-empty {
+    display: none;
+}
+
+.ngx-dnd-item {
+    background: white !important;
+    border: 1px solid black !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.mat-tab-body-content {
+    overflow: hidden !important;
+}
