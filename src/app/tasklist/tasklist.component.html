@@ -26,13 +26,13 @@
                 <div class="col-md-2">
                   <div class="md-form form-group">
                     <mat-button-toggle-group [(ngModel)]="newTask.priority" #group="matButtonToggleGroup">
-                      <mat-button-toggle value="0">
+                      <mat-button-toggle matTooltip="Prioridade Baixa" value="0">
                         <mat-icon class="low">outlined_flag</mat-icon>
                       </mat-button-toggle>
-                      <mat-button-toggle value="1">
+                      <mat-button-toggle matTooltip="Prioridade Média" value="1">
                         <mat-icon class="medium">outlined_flag</mat-icon>
                       </mat-button-toggle>
-                      <mat-button-toggle value="2">
+                      <mat-button-toggle matTooltip="Prioridade Alta" value="2">
                         <mat-icon class="high">outlined_flag</mat-icon>
                       </mat-button-toggle>
                     </mat-button-toggle-group>
@@ -49,20 +49,20 @@
                   <div class="ngx-dnd-container" ngxDroppable [model]="todoList">
                     <div class="ngx-dnd-item" ngxDraggable *ngFor="let item of todoList" [model]="item">
                       <div class="row">
-                        <div class="col-md-8">
-                          <mat-checkbox [(ngModel)]="item.completed">
+                        <div class="col-lg-8 col-md-6 col-sm-4">
+                          <mat-checkbox [(ngModel)]="item.completed" matTooltip="Concluir">
                             {{item.title}}
                           </mat-checkbox>
                         </div>
-                        <div class="col-md-2">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
-                        <div class="col-md-2">
-                          <button mat-icon-button>
-                            <mat-icon class="margin-right" [ngClass]="getFlagType(item)">outlined_flag</mat-icon>
+                        <div class="col-lg-2 col-md-3 col-sm-4">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
+                        <div class="col-lg-2 col-md-3 col-sm-4">
+                          <button class="margin-right" mat-icon-button (click)="test()">
+                            <mat-icon [ngClass]="getFlagType(item)">outlined_flag</mat-icon>
                           </button>
-                          <button mat-icon-button (click)="editTaskDialog(item)">
-                            <mat-icon class="margin-right">create</mat-icon>
+                          <button class="margin-right" mat-icon-button (click)="editTaskDialog(item)" matTooltip="Editar">
+                            <mat-icon>create</mat-icon>
                           </button>
-                          <button mat-icon-button>
+                          <button mat-icon-button (click)="removeTaskDialog(item)" matTooltip="Excluir">
                             <mat-icon>delete_outlined</mat-icon>
                           </button>
                         </div>
@@ -81,20 +81,20 @@
                   <div class="ngx-dnd-container" ngxDroppable [model]="completedList">
                     <div class="ngx-dnd-item" ngxDraggable *ngFor="let item of completedList" [model]="item">
                       <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-lg-8 col-md-8 col-sm-6">
                           <mat-checkbox [(ngModel)]="item.completed" class="line-through">
                             {{item.title}}
                           </mat-checkbox>
                         </div>
-                        <div class="col-md-2">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
-                        <div class="col-md-2">
-                          <button mat-icon-button>
-                            <mat-icon class="margin-right" [ngClass]="getFlagType(item)">outlined_flag</mat-icon>
+                        <div class="col-lg-2 col-md-2 col-sm-3">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
+                        <div class="col-lg-2 col-md-2 col-sm-3">
+                          <button class="margin-right" mat-icon-button>
+                            <mat-icon [ngClass]="getFlagType(item)">outlined_flag</mat-icon>
                           </button>
-                          <button mat-icon-button (click)="editTaskDialog(item)">
-                            <mat-icon class="margin-right">create</mat-icon>
+                          <button class="margin-right" mat-icon-button (click)="editTaskDialog(item)" matTooltip="Editar">
+                            <mat-icon>create</mat-icon>
                           </button>
-                          <button mat-icon-button>
+                          <button mat-icon-button (click)="removeTaskDialog(item)" matTooltip="Excluir">
                             <mat-icon>delete_outlined</mat-icon>
                           </button>
                         </div>

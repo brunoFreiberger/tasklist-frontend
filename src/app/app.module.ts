@@ -1,10 +1,11 @@
+import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
 
 import { AppComponent } from './app.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
-import { FormsModule } from '../../node_modules/@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
@@ -14,7 +15,8 @@ import {
   MatIconModule,
   MatProgressBarModule,
   MatButtonToggleModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTooltipModule
 } from '@angular/material';
 import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.component';
 
@@ -22,7 +24,8 @@ import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.com
   declarations: [
     AppComponent,
     TasklistComponent,
-    DialogEditTaskComponent
+    DialogEditTaskComponent,
+    DialogConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -37,11 +40,12 @@ import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.com
     MatProgressBarModule,
     MatCheckboxModule,
     MatButtonToggleModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [DialogEditTaskComponent]
+  entryComponents: [DialogEditTaskComponent, DialogConfirmComponent]
 })
 export class AppModule { }

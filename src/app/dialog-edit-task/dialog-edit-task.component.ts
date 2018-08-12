@@ -1,6 +1,7 @@
-import { Task } from './../tasklist/task';
+import { DialogData } from './dialog-data';
+import { Task } from '../tasklist/task';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '../../../node_modules/@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-dialog-edit-task',
@@ -9,8 +10,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '../../../node_modules/@angular/ma
 })
 export class DialogEditTaskComponent implements OnInit {
 
+  public task: Task;
+
   constructor(public dialogRef: MatDialogRef<DialogEditTaskComponent>,
-              @Inject(MAT_DIALOG_DATA) public task: Task) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    this.task = {
+      id: data.task.id,
+      title: data.task.title,
+      priority: data.task.priority,
+      order: data.task.order,
+      completed: data.task.completed,
+      creationDate: data.task.creationDate
+    };
+  }
 
   ngOnInit() {
   }

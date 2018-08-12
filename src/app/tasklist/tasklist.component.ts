@@ -1,8 +1,9 @@
-import { DialogEditTaskComponent } from './../dialog-edit-task/dialog-edit-task.component';
+import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { DialogEditTaskComponent } from '../dialog-edit-task/dialog-edit-task.component';
 import { Priority } from './priority';
 import { Task } from './task';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '../../../node_modules/@angular/material';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-tasklist',
@@ -80,6 +81,7 @@ export class TasklistComponent implements OnInit {
    */
   public addTask(): void {
     this.newTask.creationDate = new Date();
+    this.newTask.priority = this.newTask.priority ? this.newTask.priority : Priority.low;
     this.todoList.push(this.newTask);
     this.newTask = {} as Task;
   }
@@ -108,13 +110,23 @@ export class TasklistComponent implements OnInit {
   }
 
   editTaskDialog(task: Task): void {
+    console.log(task);
     const dialogRef = this.dialog.open(DialogEditTaskComponent, {
-      width: '250px',
+      width: '1000px',
       data: { task: task }
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      task = result;
+    });
+  }
+
+  removeTaskDialog(task: Task): void {
+    console.log(task);
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      width: '500px',
+      data: { title: 'Remover', description: 'Deseja excluir esta tarefa?', buttonText: 'Excluir' }
+    });
+    dialogRef.afterClosed().subscribe(result => {
       task = result;
     });
   }
@@ -124,6 +136,10 @@ export class TasklistComponent implements OnInit {
    */
   public getPercentOfConclusion(): number {
     return Math.round((this.completedList.length * 100) / (this.todoList.length + this.completedList.length));
+  }
+
+  public test() {
+    console.log(this.todoList);
   }
 
 }
