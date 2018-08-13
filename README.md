@@ -1,1 +1,1 @@
-Check [a relative link](https://github.com/brunoFreiberger/tasklist-backend "here") to see details of tasklist app.
+Click [here](https://github.com/brunoFreiberger/tasklist-backend) to see details of tasklist app.
