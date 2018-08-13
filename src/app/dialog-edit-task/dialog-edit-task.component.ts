@@ -18,7 +18,7 @@ export class DialogEditTaskComponent implements OnInit {
       id: data.task.id,
       title: data.task.title,
       priority: data.task.priority,
-      order: data.task.order,
+      orderTask: data.task.orderTask,
       completed: data.task.completed,
       creationDate: data.task.creationDate
     };

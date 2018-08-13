@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,34 +25,31 @@ export class TasklistService {
    * Send task to backend and persist/update
    * @param task obj
    */
-  public save(task: Task): boolean {
-    this.http.post('/saveTask', task, this.httpOptions);
-    return false;
+  public save(task: Task): Observable<any> {
+    return this.http.post('api/task/save', task, this.httpOptions);
   }
 
   /**
    * delete task
    * @param taskId identifier of task to remove
    */
-  public delete(taskId: number): boolean {
-    this.http.post('/removeTask', taskId, this.httpOptions);
-    return true;
+  public delete(taskId: number): Observable<any> {
+    return this.http.post('api/task/delete/' + taskId , this.httpOptions);
   }
 
   /**
    * Return all tasks
    */
-  public getTasks(): Array<Task> {
-    this.http.get('/getTasks', this.httpOptions);
-    return null;
+  public getAllTasks(): Observable<Array<Task>> {
+    return this.http.get('/api/task/all', this.httpOptions) as Observable<Array<Task>>;
   }
 
   /**
-   * Save order of tasks when change
-   * @param tasks list of tasks to save order
+   * Save orderTask of tasks when change
+   * @param tasks list of tasks to save orderTask
    */
-  public saveOrder(tasks: Array<Task>): boolean {
-    return false;
+  public saveOrder(tasks: Array<Task>): Observable<any> {
+    return this.http.post('api/task/saveOrder', tasks);
   }
 
 }

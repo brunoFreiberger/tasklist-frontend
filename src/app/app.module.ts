@@ -1,3 +1,4 @@
+import { TasklistService } from './tasklist/tasklist.service';
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -6,6 +7,7 @@ import { NgxDnDModule } from '@swimlane/ngx-dnd';
 import { AppComponent } from './app.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
@@ -41,9 +43,10 @@ import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.com
     MatCheckboxModule,
     MatButtonToggleModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TasklistService, HttpClient],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [DialogEditTaskComponent, DialogConfirmComponent]

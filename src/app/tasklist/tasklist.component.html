@@ -46,11 +46,11 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="ngx-dnd-container" ngxDroppable [model]="todoList">
+                  <div class="ngx-dnd-container" (drop)="saveOrder(todoList)" ngxDroppable [model]="todoList">
                     <div class="ngx-dnd-item" ngxDraggable *ngFor="let item of todoList" [model]="item">
                       <div class="row">
                         <div class="col-lg-8 col-md-6 col-sm-4">
-                          <mat-checkbox [(ngModel)]="item.completed" matTooltip="Concluir">
+                          <mat-checkbox [(ngModel)]="item.completed" matTooltip="Concluir" (change)="completeTask(item)">
                             {{item.title}}
                           </mat-checkbox>
                         </div>
@@ -78,11 +78,11 @@
               </ng-template>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="ngx-dnd-container" ngxDroppable [model]="completedList">
+                  <div (drop)="saveOrder(completedList)" class="ngx-dnd-container" ngxDroppable [model]="completedList">
                     <div class="ngx-dnd-item" ngxDraggable *ngFor="let item of completedList" [model]="item">
                       <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-6">
-                          <mat-checkbox [(ngModel)]="item.completed" class="line-through">
+                          <mat-checkbox [(ngModel)]="item.completed" class="line-through" (change)="completeTask(item)">
                             {{item.title}}
                           </mat-checkbox>
                         </div>
