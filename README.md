@@ -1,2 +1,1 @@
-# tasklist-frontend
-Tasklist implementation using angular 6 and Material Design
+Check [a relative link](https://github.com/brunoFreiberger/tasklist-backend "here") to see details of tasklist app.
