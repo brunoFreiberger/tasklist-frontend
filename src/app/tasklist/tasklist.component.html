@@ -49,13 +49,13 @@
                   <div class="ngx-dnd-container" (drop)="saveOrder(todoList)" ngxDroppable [model]="todoList">
                     <div class="ngx-dnd-item" ngxDraggable *ngFor="let item of todoList" [model]="item">
                       <div class="row">
-                        <div class="col-lg-8 col-md-6 col-sm-4">
+                        <div class="col-lg-8 col-md-6 col-sm-6">
                           <mat-checkbox [(ngModel)]="item.completed" matTooltip="Concluir" (change)="completeTask(item)">
                             {{item.title}}
                           </mat-checkbox>
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
-                        <div class="col-lg-2 col-md-3 col-sm-4">
+                        <div class="col-lg-2 col-md-3 col-sm-3">Criada em: {{item.creationDate | date: 'dd/MM/yyyy'}}</div>
+                        <div class="col-lg-2 col-md-3 col-sm-3">
                           <button class="margin-right" mat-icon-button (click)="test()">
                             <mat-icon [ngClass]="getFlagType(item)">outlined_flag</mat-icon>
                           </button>
